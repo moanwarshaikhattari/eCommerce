@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'head.html' %}
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <!-- Page Header -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Login Your Account</h1>
+    </div>
+
+    <!-- Signup Form Section -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card shadow border-0 rounded-4">
+                    <div class="card-body p-5">
+                        <h3 class="text-center mb-4">Login</h3>
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% if error %}
+                             <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <div>Please enter the correct username and password</div>
+                            </div>
+                            {% endif %}
+                            <!-- Full Name -->
+                            <div class="mb-3">
+                                <label for="name" class="form-label">User Name</label>
+                                <input type="text" class="form-control form-control-md" id="name" name="username" placeholder="Enter your full name" required>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="mb-3">
+                                <label for="password1" class="form-label">Password</label>
+                                <input type="password" class="form-control form-control-md" id="password1" name="password" placeholder="Enter your password" required>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary rounded-pill">Login</button>
+                            </div>
+                        </form>
+                        <p class="text-center mt-4">
+                            Don't have an account?  
+                            <a href="{% url 'signup_view' %}" class="text-decoration-none">Sign up here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+</html>

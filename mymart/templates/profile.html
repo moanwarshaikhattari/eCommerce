@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include 'head.html' %}
+</head>
+
+<body>
+
+    {% include 'header.html' %}
+
+    <!-- Page Header -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">User Profile</h1>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Profile Content Start -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card shadow rounded-4 border-0">
+                    <div class="card-header bg-primary text-white text-center rounded-top-4">
+                        <h3 class="mb-0">
+                            <i class="bi bi-person-circle me-2"></i> Profile Details
+                        </h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Username:</strong> {{ user.username|title }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Email:</strong> {{ user.email }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>First Name:</strong> {{ user.first_name|title }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Last Name:</strong> {{ user.last_name|title }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Joined:</strong> {{ user.date_joined|date:"d M Y, H:i" }}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center bg-light border-top-0">
+                        <a href="{% url 'logout_view' %}" class="btn btn-outline-danger rounded-pill px-4">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Content End -->
+
+    {% include 'footer.html' %}
+
+</body>
+
+</html>

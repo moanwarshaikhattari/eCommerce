@@ -1,0 +1,367 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        {% include 'head.html' %}
+        <style>
+            .error{
+                font-size:14px;
+                margin-top:5px;
+            }
+           
+        </style>
+    </head>
+
+    <body>
+
+        {% include 'header.html' %}
+
+        <!-- Single Page Header start -->
+        <div class="container-fluid page-header py-5">
+            <h1 class="text-center text-white display-6">Product Detail</h1>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active text-white">{{productDetails.product_name}}</li>
+            </ol>
+        </div>
+        <!-- Single Page Header End -->
+
+
+        <!-- Single Product Start -->
+        <div class="container-fluid py-5 mt-5">
+            <div class="container py-5">
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-8 col-xl-9">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="border rounded">
+                                    <a href="#">
+                                        <img src="{%static 'img/'%}{{productDetails.image_name}}" class="img-fluid rounded" alt="Image">
+                                        {% comment %} <img src="{% static 'img/single-item.jpg' %}" class="img-fluid rounded" alt="Image"> {% endcomment %}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h4 class="fw-bold mb-3">{{productDetails.product_name}}</h4>
+                                <p class="mb-3">{{allreview|length}} Reviews</p>
+                                <h5 class="fw-bold mb-3">₹ {{productDetails.price}}</h5>
+                                <p class="mb-3">{{productDetails.short_discriptions}}</p>
+                              
+                                <p class="fw-bold text-success">
+                                    <i class="bi bi-bag-fill me-1"></i> Quantity: <span class="text-dark">{{productDetails.stock_quantity}}</span>
+                                </p>
+
+
+                                <div class="my-3">
+                                    <p class="mb-0 {% if productDetails.is_in_stock %} text-success {% else %} text-danger {% endif %} fw-bold">
+                                        {% if productDetails.is_in_stock %}
+                                         <i class="bi bi-check-circle-fill me-1"></i> In Stock
+                                        {% else %}
+                                        <i class="bi bi-x-circle-fill me-1"></i> Out of Stock
+                                        {% endif %}
+                                    </p>
+                                </div>
+                                {% if productDetails.is_in_stock %}
+                                    <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                {% else %}
+                                    <a href="javascript:void(0);" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"></i> Notify Me</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xl-3">
+                        <div class="row g-4 fruite">
+                            <div class="col-lg-12">
+                                <div class="input-group w-100 mx-auto d-flex mb-4">
+                                    <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                                    <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                                </div>
+                                <div class="mb-4">
+                                    <h4>Categories</h4>
+                                    <ul class="list-unstyled fruite-categorie">
+                                        {% for catname in names %}
+                                       <li class="mb-2">
+                                            <a href="{% url 'home' %}?category={{ catname.id }}"
+                                            class="d-block px-3 py-2 rounded text-start border-1 btn btn-outline-primary">
+                                                {{ catname.name }}
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <nav>
+                            <div class="nav nav-tabs mb-3">
+                                <button class="nav-link active border-white border-bottom-0" type="button" role="tab"
+                                    id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about"
+                                    aria-controls="nav-about" aria-selected="true">Description</button>
+                                <button class="nav-link border-white border-bottom-0" type="button" role="tab"
+                                    id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission"
+                                    aria-controls="nav-mission" aria-selected="false">Reviews</button>
+                            </div>
+                        </nav>
+                        <div class="tab-content mb-5">
+                            <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                                <p>{{productDetails.discriptions}}</p>
+                                <div class="px-2">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-6">
+                                                <h4 class="mb-3 fw-bold">Specifications</h4>
+                                            <div class="row bg-light align-items-center text-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">General</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row text-center align-items-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">Brand</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">Unbranded</p>
+                                                </div>
+                                            </div>
+                                            <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">Type</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">{{productDetails.product_name}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row text-center align-items-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">Quantity</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">{{productDetails.stock_quantity}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">Origin</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">India</p>
+                                                </div>
+                                            </div>
+                                            <div class="row text-center align-items-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">Packaging Type</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">Polybag</p>
+                                                </div>
+                                            </div>
+                                            <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                                                <div class="col-6">
+                                                    <p class="mb-0">Net Quantity</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="mb-0">{{productDetails.stock_quantity}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
+                                {% for i in allreview %}
+                                <div class="d-flex mb-4 border-bottom pb-3">
+                                    <img src="{% static 'img/avatar.jpg' %}" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                                    <div>
+                                        <p class="mb-2 text-muted" style="font-size: 14px;">{{ i.post_at }}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h5 class="mb-0">{{ i.user.username|title }}</h5>
+                                            <div class="d-flex align-items-center">
+                                                {% for _ in "12345"|make_list %}
+                                                    {% if forloop.counter <= i.rating %}
+                                                        <i class="fa fa-star text-warning"></i>
+                                                    {% else %}
+                                                        <i class="fa fa-star text-muted"></i>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <p class="mt-2">{{ i.review }}</p>
+                                    </div>
+                                </div>
+                                {% empty %}
+                                <p class="text-muted">0 Customers Reviews</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 shadow-sm mb-4" style="background:#f7f7f7">
+                        
+                        {% if message %}
+                            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">{{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <form method="POST" id="reviewForm" class='p-4'>
+                            {% csrf_token %}
+                            <h4 class="mb-5 fw-bold">Write a review</h4>
+                            <div class="row g-4">
+                                <div class="col-lg-12">
+                                    <div class="d-flex align-items-center">
+                                        <p class="mb-0 me-3">Please rate:</p>
+                                        <div id="star-rating" class="d-flex align-items-center" style="font-size: 12px;">
+                                            <i class="fa fa-star" data-value="1"></i>
+                                            <i class="fa fa-star" data-value="2"></i>
+                                            <i class="fa fa-star" data-value="3"></i>
+                                            <i class="fa fa-star" data-value="4"></i>
+                                            <i class="fa fa-star" data-value="5"></i>
+                                        </div>
+                                        <input type="hidden" name="rating" id="rating" value="0">
+                                        <div class="text-danger error ms-4" id="errorStar"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="rounded my-3">
+                                        <textarea name="comment" id="comment" class="form-control border-0" cols="30" rows="5" placeholder="Your Review *" spellcheck="false"></textarea>
+                                        <div class="text-danger error" id="errorMessage"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="text-end py-3">
+                                          <button type="submit" id="submitBtn"  class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        {% else %}
+                        <div class="p-4 text-center">
+                            <h4 class="mb-2 text-primary">You must sign up to leave a review.</h4>
+                            <p class="mb-0">
+                                Already have an account?<a href="{% url 'login_view' %}" class="fw-semibold text-decoration-none text-success"><u>Login</u></a> to share your feedback.
+                            </p>
+                        </div>
+
+                        {% endif %}
+                    </div>
+                </div>
+                <h1 class="fw-bold mb-0 text-center">Related products</h1>
+                <div class="vesitable">
+                   
+                    <div class="owl-carousel vegetable-carousel justify-content-center">
+                         {% for allproduct in relatedproduct %}
+                         <div class="border border-primary rounded position-relative vesitable-item">
+                            <a href="{{allproduct.product_slug}}">
+                                <div class="vesitable-img">
+                                    <img src="{% static 'img/'%}{{allproduct.image_name}}" class="rounded-top" width="260px" height="182px" alt="{{allproduct.product_name}}">
+                                </div>
+                                <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">{{allproduct.prd_category}}</div>
+                                <div class="p-4 pb-0 rounded-bottom">
+                                    <h4>{{allproduct.product_name}}</h4>
+                                    <p>{{allproduct.short_discriptions}}</p>
+                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                        <p class="text-dark fs-5 fw-bold">₹ {{allproduct.price}}</p>
+                                        {% if allproduct.is_in_stock %}
+                                            <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i>Add to Cart</a>
+                                        {% else %}
+                                            <a href="javascript:void(0)" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i>Notify Me</a>
+                                        {% endif %}
+                                        
+                                    </div>
+                                    <div class="d-flex">
+                                        <p class="fw-bold text-success text-start mb-1">
+                                            Quantity: <span class="text-dark">{{allproduct.stock_quantity}}</span>
+                                        </p>
+                                        <p class="mb-4 ms-4 {% if allproduct.is_in_stock %} text-success {% else %} text-danger {% endif %} fw-bold">
+                                            {% if allproduct.is_in_stock %}
+                                                In Stock
+                                            {% else %}
+                                                Out of Stock
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Single Product End -->
+       {% include 'footer.html' %}
+
+      
+    <script>
+        const stars = document.querySelectorAll('#star-rating i');
+        const ratingInput = document.getElementById('rating');
+
+        stars.forEach(star => {
+            star.addEventListener('click', function () {
+                const rating = this.getAttribute('data-value');
+                ratingInput.value = rating;
+
+                stars.forEach(s => s.classList.remove('text-warning'));
+                for (let i = 0; i < rating; i++) {
+                    stars[i].classList.add('text-warning');
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById("reviewForm").onsubmit = function (e) {
+            const submitBtn = document.getElementById('submitBtn');
+            // Clear previous errors
+            //document.getElementById("errorName").innerText = "";
+           // document.getElementById("errorEmail").innerText = "";
+            document.getElementById("errorMessage").innerText = "";
+            // document.getElementById("errorStar").innerText = "";
+
+            let valid = true;
+
+           // const name = document.querySelector("[name='rusername']").value.trim();
+           // const email = document.querySelector("[name='ruseremail']").value.trim();
+            const comment = document.querySelector("[name='comment']").value.trim();
+            // const rating = parseInt(document.getElementById("rating").value);
+
+            // if (name === "") {
+            // document.getElementById("errorName").innerText = "Name is required.";
+            // valid = false;
+            // }
+
+            // if (!/^\S+@\S+\.\S+$/.test(email)) {
+            // document.getElementById("errorEmail").innerText = "Enter a valid email address.";
+            // valid = false;
+            // }
+
+            if (comment === "") {
+            document.getElementById("errorMessage").innerText = "Message is required.";
+            valid = false;
+            }
+
+            // if (rating === 0) {
+            // document.getElementById("errorStar").innerText = "Please select a rating.";
+            // valid = false;
+            // }
+            // If form is valid, show processing
+            if (valid) {
+            submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> Processing...`;
+            submitBtn.disabled = true;
+            } else {
+            e.preventDefault(); // stop form from submitting
+            }
+        };
+        </script>
+
+     
+    </body>
+
+</html>
