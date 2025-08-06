@@ -63,7 +63,7 @@
                                     </p>
                                 </div>
                                 {% if productDetails.is_in_stock %}
-                                    <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    <a href="{% url 'cart' productDetails.id %}" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                 {% else %}
                                     <a href="javascript:void(0);" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"></i> Notify Me</a>
                                 {% endif %}
