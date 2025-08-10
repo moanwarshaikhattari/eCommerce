@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'head.html' %}
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <!-- Page Header -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">Product Entry</h1>
+    </div>
+
+    <!-- Signup Form Section -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow border-0 rounded-4">
+                    <div class="card-body px-4 py-4">
+                        <h4 class="text-center mb-3">Enter Product Details</h4>
+                        {% if message %}
+                            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">{{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endif %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            <!-- {% if errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in errors %}
+                                        <p class="mb-0">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %} -->
+                            
+                           <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="prd_name" class="form-label">Product Name</label>
+                                        <input type="text" class="form-control form-control-md" id="prd_name" name="prd_name"  required>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="prd_price" class="form-label">Product Price</label>
+                                        <input type="number" class="form-control form-control-md" id="prd_price" name="prd_price" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="prd_quant" class="form-label">Product Quantity</label>
+                                        <input type="number" class="form-control form-control-md" id="prd_quant" name="prd_quant" required>
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <label for="prd_weight" class="form-label">Product Weight</label>
+                                        <input type="text" class="form-control form-control-md" id="prd_weight" name="prd_weight"  required>
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <label for="prd_short_disc" class="form-label">short Discriptions</label>
+                                        <textarea rows="5" cols="32" name="prd_short_disc" id="prd_short_disc"></textarea>
+                                        <!-- <input type="text" class="form-control form-control-md" id="prd_short_disc" name="prd_short_disc" required> -->
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <label for="prd_long_disc" class="form-label">Discriptions</label>
+                                        <textarea rows="5" cols="32" name="prd_long_disc" id="prd_long_disc"></textarea>
+                                        <!-- <input type="text" class="form-control form-control-md" id="prd_long_disc" name="prd_long_disc"  required> -->
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <label for="prd_category" class="form-label">Category</label>
+                                        <select name="prd_category" id="prd_category" class="form-control" required>
+                                            {% for category in categories %}
+                                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+                                        <label for="img_name" class="form-label">Image Name</label>
+                                        <input type="text" class="form-control form-control-md" id="img_name" name="img_name"  required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                          <div class="d-grid">
+                                                <button type="submit" class="btn btn-primary rounded-pill">Add Product</button>
+                                            </div>
+                                    </div>
+                                </div>
+                           </div>
+                        </form>
+
+                        <!-- <p class="text-center mt-4 mb-0">
+                            Already have an account?
+                            <a href="{% url 'login_view' %}" class="text-decoration-none">Login here</a>
+                        </p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% include 'footer.html' %}
+</body>
+</html>
