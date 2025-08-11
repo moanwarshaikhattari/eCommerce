@@ -197,3 +197,33 @@ def chackout_dtails(request):
         'total':total_amount,
     }
     return render(request, 'chackout.html', data)
+
+def admin_prd(request):
+    prd_category = Category.objects.all()
+    message = None
+    if request.method == 'POST':
+        product_names = request.POST.get('prd_name')
+        product_price = request.POST.get('prd_price')
+        product_quant = request.POST.get('prd_quant')
+        product_weight = request.POST.get('prd_weight')
+        product_srtdis = request.POST.get('prd_short_disc')
+        product_longdis = request.POST.get('prd_long_disc')
+        product_cat = request.POST.get('prd_category')
+        product_image = request.POST.get('img_name')
+
+        Product.objects.create(
+            product_name=product_names,
+            price=float(product_price),
+            stock_quantity=int(product_quant),
+            prd_weight=product_weight,
+            short_discriptions=product_srtdis,
+            discriptions=product_longdis,
+            prd_category=Category.objects.get(id=product_cat),
+            image_name = product_image
+        )
+        message = "product added successfully!"
+    data = {
+        'categories':prd_category,
+        'message':message
+    }
+    return render(request, 'admin-prd.html', data)

@@ -37,7 +37,7 @@
                             <div class="col-lg-6">
                                 <div class="border rounded">
                                     <a href="#">
-                                        <img src="{%static 'img/'%}{{productDetails.image_name}}" class="img-fluid rounded" alt="Image">
+                                        <img src="{%static 'img/'%}{{productDetails.image_name}}.jpg" class="img-fluid rounded" alt="Image">
                                         {% comment %} <img src="{% static 'img/single-item.jpg' %}" class="img-fluid rounded" alt="Image"> {% endcomment %}
                                     </a>
                                 </div>
@@ -49,7 +49,7 @@
                                 <p class="mb-3">{{productDetails.short_discriptions}}</p>
                               
                                 <p class="fw-bold text-success">
-                                    <i class="bi bi-bag-fill me-1"></i> Quantity: <span class="text-dark">{{productDetails.stock_quantity}}</span>
+                                    <i class="bi bi-bag-fill me-1"></i> Quantity: <span class="text-dark">{{productDetails.prd_weight}}</span>
                                 </p>
 
 
@@ -142,7 +142,7 @@
                                                     <p class="mb-0">Quantity</p>
                                                 </div>
                                                 <div class="col-6">
-                                                    <p class="mb-0">{{productDetails.stock_quantity}}</p>
+                                                    <p class="mb-0">{{productDetails.prd_weight}}</p>
                                                 </div>
                                             </div>
                                             <div class="row bg-light text-center align-items-center justify-content-center py-2">
@@ -166,7 +166,7 @@
                                                     <p class="mb-0">Net Quantity</p>
                                                 </div>
                                                 <div class="col-6">
-                                                    <p class="mb-0">{{productDetails.stock_quantity}}</p>
+                                                    <p class="mb-0">{{productDetails.prd_weight}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -207,7 +207,6 @@
                             <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">{{ message }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
-                            
                         {% endif %}
                         {% if user.is_authenticated %}
                         <form method="POST" id="reviewForm" class='p-4'>
@@ -277,7 +276,7 @@
                                     </div>
                                     <div class="d-flex">
                                         <p class="fw-bold text-success text-start mb-1">
-                                            Quantity: <span class="text-dark">{{allproduct.stock_quantity}}</span>
+                                            Quantity: <span class="text-dark">{{allproduct.prd_weight}}</span>
                                         </p>
                                         <p class="mb-4 ms-4 {% if allproduct.is_in_stock %} text-success {% else %} text-danger {% endif %} fw-bold">
                                             {% if allproduct.is_in_stock %}

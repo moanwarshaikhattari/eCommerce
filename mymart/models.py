@@ -13,10 +13,10 @@ class Product(models.Model):
     product_name = models.CharField(max_length=100)
     short_discriptions = models.TextField()
     discriptions = models.TextField()
-    prd_category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    prd_category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=0)
-    stock_quantity = models.CharField(max_length=50, blank=False) #weight quantity
-    # is_product = models.CharField(max_length=100, blank=True)
+    stock_quantity = models.IntegerField(default=0, blank=False, null=True)
+    prd_weight = models.CharField(max_length=50, blank=False, null=True)
     product_slug = AutoSlugField(populate_from='product_name',unique=True,null=True,default=None)
     image_name = models.CharField(max_length=100, blank=True)
     # discount_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
@@ -27,7 +27,7 @@ class Product(models.Model):
     
     @property
     def is_in_stock(self):
-        return self.stock_quantity > '0'
+        return int(self.stock_quantity) > 0
     
 class Review(models.Model):
     product_review = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)

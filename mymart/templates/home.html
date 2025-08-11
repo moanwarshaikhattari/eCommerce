@@ -81,17 +81,17 @@
                                 <div class="col-lg-12">
                                     <div class="row g-4">
                                         {% for allproduct in myproduct %}
-                                        <div class="col-md-6 col-lg-4 col-xl-3">
+                                        <div class="col-md-6 col-lg-4 col-xl-3 h-100">
                                             <a href="product-details/{{allproduct.product_slug}}">
                                                 <div class="rounded position-relative fruite-item">
                                                     <div class="fruite-img">
-                                                        <img src="{%static 'img/'%}{{allproduct.image_name}}" class="rounded-top" width="260px" height="182px" alt="{{allproduct.image_name}}">
+                                                        <img src="{%static 'img/'%}{{allproduct.image_name}}.jpg" class="rounded-top" width="260px" height="182px" alt="{{allproduct.image_name}}">
                                                     </div>
                                                     
                                                     <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{allproduct.prd_category}}</div>
                                                     <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                         <h4 class="text-start">{{allproduct.product_name}}</h4>
-                                                        <p class="text-start">{{allproduct.short_discriptions}}</p>
+                                                        <p class="text-start" style="height: 120px;">{{allproduct.short_discriptions}}</p>
                                                         <div class="d-flex justify-content-between flex-lg-wrap">
                                                             <p class="text-dark fs-5 fw-bold">₹ {{allproduct.price}}</p>
                                                             {% if allproduct.is_in_stock %}
@@ -108,11 +108,11 @@
                                                             
                                                         </div>
                                                         
-                                                        <div class="d-flex">
+                                                        <div class="d-flex justify-content-between flex-lg-wrap">
                                                             <p class="fw-bold text-success text-start mb-1">
-                                                                Quantity: <span class="text-dark">{{allproduct.stock_quantity}}</span>
+                                                                Quantity: <span class="text-dark">{{allproduct.prd_weight}}</span>
                                                             </p>
-                                                            <p class="mb-0 ms-4 {% if allproduct.is_in_stock %} text-success {% else %} text-danger {% endif %} fw-bold">
+                                                            <p class="mb-0 {% if allproduct.is_in_stock %} text-success {% else %} text-danger {% endif %} fw-bold">
                                                                 {% if allproduct.is_in_stock %}
                                                                  In Stock
                                                                 {% else %}
