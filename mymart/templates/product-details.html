@@ -259,10 +259,10 @@
                          <div class="border border-primary rounded position-relative vesitable-item">
                             <a href="{{allproduct.product_slug}}">
                                 <div class="vesitable-img">
-                                    <img src="{% static 'img/'%}{{allproduct.image_name}}" class="rounded-top" width="260px" height="182px" alt="{{allproduct.product_name}}">
+                                    <img src="{% static 'img/'%}{{allproduct.image_name}}.jpg" class="rounded-top" width="260px" height="182px" alt="{{allproduct.product_name}}">
                                 </div>
                                 <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">{{allproduct.prd_category}}</div>
-                                <div class="p-4 pb-0 rounded-bottom">
+                                <div class="p-3 pb-0 rounded-bottom">
                                     <h4>{{allproduct.product_name}}</h4>
                                     <p>{{allproduct.short_discriptions}}</p>
                                     <div class="d-flex justify-content-between flex-lg-wrap">
@@ -274,7 +274,7 @@
                                         {% endif %}
                                         
                                     </div>
-                                    <div class="d-flex">
+                                    <div class="d-flex justify-content-between flex-lg-wrap">
                                         <p class="fw-bold text-success text-start mb-1">
                                             Quantity: <span class="text-dark">{{allproduct.prd_weight}}</span>
                                         </p>
