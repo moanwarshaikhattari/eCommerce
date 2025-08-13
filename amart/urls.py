@@ -21,7 +21,7 @@ from mymart import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home, name='home'),
-    path('product-details/<slug>',views.details, name='details'),
+    path('product-details/<slug:slug>',views.details, name='details'),
     path('cart/<int:product_id>/',views.cart, name='cart'),
     path('update-quantity/<int:item_id>/<str:action>/', views.update_quantity, name='update_quantity'),
     path('view_cart/',views.view_cart, name='view_cart'),

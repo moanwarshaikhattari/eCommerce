@@ -47,10 +47,12 @@
                                         </div>
                                     </th>
                                     <td>
-                                        <p class="mb-0 mt-4">{{item.product.product_name}}</p>
+                                        <a href="{% url 'details' item.product.product_slug %}">
+                                            <p class="mb-0 mt-4">{{item.product.product_name}}</p>
+                                        </a>
                                     </td>
                                     <td>
-                                        <p class="mb-0 mt-4">₹ {{item.product.price}}</p>
+                                        <p class="mb-0 mt-4">₹&nbsp;{{item.product.price}}</p>
                                     </td>
                                     <td>
                                         <div class="input-group quantity mt-4" style="width: 100px;">
@@ -68,7 +70,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="mb-0 mt-4">₹ {{item.total_price}}</p>
+                                        <p class="mb-0 mt-4">₹&nbsp;{{item.total_price}}</p>
                                     </td>
                                     <td>
                                        <a href="{% url 'delete_cart_item' item.id %}" class="btn btn-md rounded-circle bg-light border mt-4">

@@ -87,16 +87,16 @@
                                         <tr>
                                             <th scope="row">
                                                 <div class="d-flex align-items-center mt-2">
-                                                    <img src="{%static 'img/'%}{{cart.product.image_name}}" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
+                                                    <img src="{%static 'img/'%}{{cart.product.image_name}}.jpg" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
                                                 </div>
                                             </th>
                                             <td class="py-5">{{cart.product.product_name}}</td>
-                                            <td class="py-5">{{cart.product.price}}</td>
+                                            <td class="py-5">₹&nbsp;{{cart.product.price}}</td>
                                             <td class="py-5">{{cart.quantity}}</td>
-                                            <td class="py-5">{{cart.total_price}}</td>
+                                            <td class="py-5">₹&nbsp;{{cart.total_price}}</td>
                                         </tr>
                                         {% endfor %}
-                                        <tr>
+                                        <!-- <tr>
                                             <th scope="row">
                                             </th>
                                             <td class="py-5"></td>
@@ -109,8 +109,8 @@
                                                     <p class="mb-0 text-dark">₹ {{ total }}</p>
                                                 </div>
                                             </td>
-                                        </tr>
-                                        <tr>
+                                        </tr> -->
+                                        <!-- <tr>
                                             <th scope="row">
                                             </th>
                                             <td class="py-5">
@@ -130,7 +130,7 @@
                                                     <label class="form-check-label" for="Shipping-3">Local Pickup: $8.00</label>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         <tr>
                                             <th scope="row">
                                             </th>
@@ -141,21 +141,12 @@
                                             <td class="py-5"></td>
                                             <td class="py-5">
                                                 <div class="py-3 border-bottom border-top">
-                                                    <p class="mb-0 text-dark">$135.00</p>
+                                                    <p class="mb-0 text-dark">₹&nbsp;{{ total }}</p>
                                                 </div>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                                <div class="col-12">
-                                    <div class="form-check text-start my-3">
-                                        <input type="checkbox" class="form-check-input bg-primary border-0" id="Transfer-1" name="Transfer" value="Transfer">
-                                        <label class="form-check-label" for="Transfer-1">Direct Bank Transfer</label>
-                                    </div>
-                                    <p class="text-start text-dark">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
-                                </div>
                             </div>
                             <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
                                 <div class="col-12">

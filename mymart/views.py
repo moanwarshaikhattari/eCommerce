@@ -58,13 +58,18 @@ def delete_cart_item(request, item_id):
     return redirect('view_cart') 
 
 def view_cart(request):
+    
     if request.user.is_authenticated:
         cart_items = Add_To_Cart.objects.filter(user=request.user) #use for count tof cart item
     else:
         cart_items = []
     # del_product = Add_To_Cart.objects.delete()
     total_amount = sum(item.total_price() for item in cart_items)
-    return render(request, 'cart.html', {'products': cart_items, 'total': total_amount})
+    data = {
+        'products': cart_items,
+        'total': total_amount
+    }
+    return render(request, 'cart.html', data)
 
 
 # def cart(request, product_id): #add_to_ cart
@@ -86,10 +91,10 @@ def cart(request, product_id=None):
         if not created:
             cart_item.quantity += 1
             cart_item.save()
-
+        return redirect('view_cart')
     cart_items = Add_To_Cart.objects.filter(user=request.user)
     total_amount = sum(item.total_price() for item in cart_items)
-
+   
     return render(request, 'cart.html', {'products': cart_items, 'total': total_amount})
 
 def update_quantity(request, item_id, action):
@@ -135,7 +140,7 @@ def details(request,slug):
     allreview = Review.objects.filter(product_review=productDetails).order_by('-id')
     cat=Category.objects.all()
 
-    if request.user.is_authenticated: #use for count tof cart item
+    if request.user.is_authenticated: #use for show count of cart item
         cart_items = Add_To_Cart.objects.filter(user=request.user) 
     else:
         cart_items = []
