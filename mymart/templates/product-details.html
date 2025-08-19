@@ -255,8 +255,8 @@
                 <div class="vesitable">
                    
                     <div class="owl-carousel vegetable-carousel justify-content-center">
-                         {% for allproduct in relatedproduct %}
-                         <div class="border border-primary rounded position-relative vesitable-item">
+                        {% for allproduct in relatedproduct %}
+                        <div class="border border-primary rounded position-relative vesitable-item">
                             <a href="{{allproduct.product_slug}}">
                                 <div class="vesitable-img">
                                     <img src="{% static 'img/'%}{{allproduct.image_name}}.jpg" class="rounded-top" width="260px" height="182px" alt="{{allproduct.product_name}}">
@@ -270,15 +270,15 @@
                                         {% if allproduct.is_in_stock %}
                                             <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i>Add to Cart</a>
                                         {% else %}
-                                            <a href="javascript:void(0)" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i>Notify Me</a>
+                                            <a href="javascript:void(0)" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary">Notify Me</a>
                                         {% endif %}
                                         
                                     </div>
-                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                    <div class="d-flex justify-content-between">
                                         <p class="fw-bold text-success text-start mb-1">
                                             Quantity: <span class="text-dark">{{allproduct.prd_weight}}</span>
                                         </p>
-                                        <p class="mb-4 ms-4 {% if allproduct.is_in_stock %} text-success {% else %} text-danger {% endif %} fw-bold">
+                                        <p class="mb-3 text-end{% if allproduct.is_in_stock %} text-success {% else %} text-danger {% endif %} fw-bold">
                                             {% if allproduct.is_in_stock %}
                                                 In Stock
                                             {% else %}

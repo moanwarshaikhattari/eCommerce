@@ -115,10 +115,16 @@ def home(request):
     category_id = request.GET.get('category')
     myproduct = Product.objects.all()
     categories = Category.objects.all()
+    #Only Vegitable PRoduct
+    vegitable_prd = Product.objects.filter(prd_category_id=2)
 
     if category_id:
         myproduct = Product.objects.filter(prd_category=category_id)
     
+    if request.method == 'GET':
+        search_prd = request.GET.get('search')
+        if search_prd != None:
+            myproduct = Product.objects.filter(product_name__icontains=search_prd) 
     if request.user.is_authenticated: #use for count to cart item
         cart_items = Add_To_Cart.objects.filter(user=request.user) 
     else:
@@ -127,6 +133,7 @@ def home(request):
         'products':cart_items,
         'categories':categories,
         'myproduct':myproduct,
+        'vegitable_prd':vegitable_prd,
         'selected_category': int(category_id) if category_id else None
     }
     return render(request, 'home.html', data)
@@ -134,7 +141,7 @@ def home(request):
 def details(request,slug):
    
     productDetails = Product.objects.get(product_slug=slug)
-    relatedproduct = Product.objects.filter(prd_category=productDetails.prd_category)
+    relatedproduct = Product.objects.filter(prd_category=productDetails.prd_category).exclude(id=productDetails.id)#exclude use for don't want current product 
     
     # allreview = Review.objects.all().order_by('-id')[0:6]
     allreview = Review.objects.filter(product_review=productDetails).order_by('-id')
