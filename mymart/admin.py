@@ -24,5 +24,5 @@ class Add_To_CartAdmin(admin.ModelAdmin):
 
 @admin.register(ShippingDetails)
 class ShippingDetailsAdmin(admin.ModelAdmin):
-    list_display = ['ship_username', 'ship_mobile', 'ship_email', 'ship_address', 'ship_city', 'ship_state', 'ship_zipcode', 'ship_date']
+    list_display = ['ship_username', 'ship_mobile', 'ship_email', 'ship_address', 'ship_city', 'ship_state', 'ship_zipcode', 'ship_payment_method', 'order_note', 'ship_date',]
     list_filter = ['ship_date', 'ship_zipcode', 'ship_email']

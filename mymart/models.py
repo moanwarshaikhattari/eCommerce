@@ -59,6 +59,12 @@ class ShippingDetails(models.Model):
     ship_zipcode = models.IntegerField(null=True)
     ship_mobile = models.IntegerField(null=True)
     ship_email = models.EmailField(null=True)
+    payment_choise = [
+        ('cash_deliv', 'Cash On Delivery'),
+        ('online', 'Online'),
+    ]
+    ship_payment_method = models.CharField(max_length=60, choices=payment_choise, default='cash_deliv', null=True)
+    order_note = models.CharField(max_length=360, null=True)
     ship_date = models.DateTimeField(auto_now_add=True, null=True)
 
    

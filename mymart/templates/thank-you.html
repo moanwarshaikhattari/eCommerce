@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include 'head.html' %}
+</head>
+
+<body>
+
+    {% include 'header.html' %}
+
+    <!-- Success Start -->
+    <div class="container-fluid py-5 mt-5">
+        <div class="container py-5 mt-5 text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <i class="bi bi-check-circle-fill display-1 text-success"></i>
+                    <h1 class="display-6 mt-1">Thank You!</h1>
+                    <h3 class="mb-3">Your payment was successful 🎉</h3>
+                    <p class="mb-4">
+                        We’ve received your payment and your order is being processed.  
+                        You will receive a confirmation email shortly.
+                    </p>
+                    <a class="btn btn-success rounded-pill mb-3 py-3 px-5" href="/">Go Back To Home</a>
+                    <a class="btn btn-outline-secondary rounded-pill mb-3 py-3 px-5 ms-2" href="javascript:void(0)">View My Orders</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Success End -->
+
+    {% include 'footer.html' %}
+
+</body>
+</html>

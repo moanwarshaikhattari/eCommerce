@@ -32,6 +32,9 @@ def signup_view(request):
     return render(request, 'signup.html')
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -46,11 +49,16 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('home')
+    return redirect('login_view')
 
 def profile(request):
-
-    return render(request, 'profile.html')
+    if not request.user.is_authenticated:
+        return redirect('home')
+    if request.user.is_authenticated:
+        cart_items = Add_To_Cart.objects.filter(user=request.user) #use for count tof cart item
+    else:
+        cart_items = []
+    return render(request, 'profile.html', {'products': cart_items})
 
 def delete_cart_item(request, item_id):
     item = get_object_or_404(Add_To_Cart, id=item_id, user=request.user)
@@ -186,6 +194,8 @@ def chackout_dtails(request):
         state = request.POST.get('state')
         zipcode = request.POST.get('zipcode')
         mobile = request.POST.get('phone')
+        payment = request.POST.get('payment')
+        ordernote = request.POST.get('notes')
 
         ShippingDetails.objects.create(
             ship_username = request.user,
@@ -194,9 +204,11 @@ def chackout_dtails(request):
             ship_city = city,
             ship_state = state,
             ship_zipcode = zipcode,
-            ship_mobile = mobile
+            ship_mobile = mobile,
+            ship_payment_method = payment,
+            order_note = ordernote
         )
-
+        return redirect('thank')
     if request.user.is_authenticated:
         cart_items = Add_To_Cart.objects.filter(user=request.user) #use for count tof cart item
     else:
@@ -209,6 +221,13 @@ def chackout_dtails(request):
         'total':total_amount,
     }
     return render(request, 'chackout.html', data)
+
+def thank(request):
+    if request.user.is_authenticated:
+        cart_items = Add_To_Cart.objects.filter(user=request.user) #use for count tof cart item
+    else:
+        cart_items = []
+    return render(request, 'thank-you.html', {'products': cart_items,})
 
 def admin_prd(request):
     prd_category = Category.objects.all()

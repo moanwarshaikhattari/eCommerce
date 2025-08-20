@@ -31,5 +31,6 @@ urlpatterns = [
     path('logout/',views.logout_view, name='logout_view'),
     path('profile/',views.profile, name='profile'),
     path('chackout/',views.chackout_dtails, name='chackout'),
+    path('thank-you/',views.thank, name='thank'),
     path('admin-prd/',views.admin_prd, name='admin_prd'),
 ]

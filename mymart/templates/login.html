@@ -21,16 +21,17 @@
                         <h3 class="text-center mb-4">Login</h3>
 
                         <form method="POST">
-                            {% csrf_token %}
+                            
                             {% if error %}
                              <div class="alert alert-danger d-flex align-items-center" role="alert">
                                 <i class="bi bi-exclamation-triangle-fill me-2"></i>
                                 <div>Please enter the correct username and password</div>
                             </div>
                             {% endif %}
+                            {% csrf_token %}
                             <!-- Full Name -->
                             <div class="mb-3">
-                                <label for="name" class="form-label">User Name</label>
+                                <label for="name" class="form-label">Username or Email</label>
                                 <input type="text" class="form-control form-control-md" id="name" name="username" placeholder="Enter your full name" required>
                             </div>
 
