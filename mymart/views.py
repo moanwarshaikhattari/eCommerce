@@ -92,7 +92,7 @@ def view_cart(request):
 #     }
 #     return render(request, 'cart.html', data)
 
-def cart(request, product_id=None):
+def cart(request, product_id=None):    
     if product_id:
         product = Product.objects.get(id=product_id)
         cart_item, created = Add_To_Cart.objects.get_or_create(user=request.user, product=product)
